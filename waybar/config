@@ -1,0 +1,130 @@
+// -*- mode: jsonc -*-
+{
+    "layer": "top", // Waybar at top layer
+    "position": "top", // Waybar position (top|bottom|left|right)
+    "mod": "dock",
+    //"height": 31, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    "spacing": 4, // Gaps between modules (4px)
+    "margin-left": 10,
+    "margin-right": 10,
+    "margin-top": 7,
+    "margin-bottom": 0,
+    "exclusive": true,
+    "passthrough": false,
+    "gtk-layer-shell": true,
+    "reload_style_on_change": true,
+    // Choose the order of the modules
+    "modules-left": [
+        "hyprland/workspaces",
+    ],
+    "modules-center": [
+	"mpris"
+    ],
+    "modules-right": [
+	"battery",
+        "pulseaudio",
+        "network",
+        "backlight",
+        "tray", 
+	"power-profiles-daemon",
+        "clock",
+    ],
+    // Modules configuration
+     "hyprland/workspaces": {
+         "disable-scroll": true,
+         "all-outputs": true,
+         "warp-on-scroll": false,
+         "format": "{icon}",
+         "format-icons": {
+             "default": "", 
+	     "active": "",
+         }
+     },
+
+ "mpris": {
+        "format": "{player_icon} {dynamic}",
+        "format-paused": "<span color='grey'>{status_icon} {dynamic}</span>",
+        "max-length": 60,
+        "player-icons": {
+            "default": "⏸",
+            "mpv": "🎵"
+        },
+        "status-icons": {
+            "paused": "▶"
+        },
+        // "ignored-players": ["firefox"]
+    },
+    "clock": {
+        // "timezone": "America/New_York",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y-%m-%d}"
+    },
+       "backlight": {
+        // "device": "acpi_video1",
+	"tooltip":true,
+        "format": "{icon}",
+	"tooltip-format": "{percent}% {icon}",
+        "format-icons": ["", "", "", "", "", "", "", "", ""]
+    },
+    "battery": {
+        "states": {
+            // "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+	"tooltip": true,
+        "format": "{icon}",
+        "format-full": "{icon}",
+        "format-charging": "{capacity}% 󰂄",
+	"format-plugged": "",
+	"tooltip-format": "{capacity}%",
+        "format-alt": "{time} {icon}",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "power-profiles-daemon": {
+      "format": "{icon}",
+      "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+      "tooltip": true,
+      "format-icons": {
+        "default": "",
+        "performance": "",
+        "balanced": "",
+        "power-saver": ""
+      }
+    },
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+	"tooltip": true,
+        "format-wifi": "{icon}",
+	"format-icons": [
+	"󰤟",
+	"󰤢",
+	"󰤥",
+	"󰤨"
+	],
+        "format-ethernet": "{ipaddr}/{cidr}",
+        "tooltip-format": "Network: <big><b>{essid}</b></big>\nSignal strength: <b>{signaldBm}dBm ({signalStrength}%)</b>\nFrequency: <b>{frequency}MHz</b>\nInterface: <b>{ifname}</b>\nIP: <b>{ipaddr}/{cidr}</b>\nGateway: <b>{gwaddr}</b>\nNetmask: <b>{netmask}</b>",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "󰤭",
+	"tooltip-format-disconnected": "Disconnected"
+    },
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{icon}",
+	"format-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "󱡒",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    }
+ }
+# See https://wiki.hypr.land/Configuring/Monitors/
